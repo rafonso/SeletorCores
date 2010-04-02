@@ -11,13 +11,15 @@
 package seletorcores;
 
 import java.awt.KeyboardFocusManager;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 /**
  *
  * @author rafael
  */
-public class SeletorCores3 extends javax.swing.JFrame {
+public class SeletorCores3 extends JPanel {
 
     /** Creates new form SeletorCores3 */
     public SeletorCores3() {
@@ -46,7 +48,7 @@ public class SeletorCores3 extends javax.swing.JFrame {
         multiSliderComponentRG_BA = new seletorcores.multisliders.MultiSliderComponentRG_BA();
         multiSliderComponentRB_GA = new seletorcores.multisliders.MultiSliderComponentRB_GA();
         multiSliderComponentRA_GB = new seletorcores.multisliders.MultiSliderComponentRA_GB();
-
+/*
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Seletor de Cores");
         setLocationByPlatform(true);
@@ -56,7 +58,7 @@ public class SeletorCores3 extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-
+*/
         multiSliderComponentR_G_B_A.setColorPanel(colorPanel);
 
         this.colorPanel.addColorChangedListener(this.multiSliderComponentR_G_B_A);
@@ -94,8 +96,9 @@ public class SeletorCores3 extends javax.swing.JFrame {
 
         multiSliderComponentRA_GB.setColorPanel(colorPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+//        getContentPane().setLayout(layout);
+		this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -147,14 +150,7 @@ public class SeletorCores3 extends javax.swing.JFrame {
                     .addComponent(multiSliderComponentRB_GA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(multiSliderComponentRA_GB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.colorPanel.init();
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
-    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -166,7 +162,25 @@ public class SeletorCores3 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new SeletorCores3().setVisible(true);
+                final JFrame frame = new JFrame();
+                final SeletorCores3 seletorCores3 = new seletorcores.SeletorCores3();
+                frame.add(seletorCores3);
+                frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                frame.setTitle("Seletor de Cores");
+                frame.setLocationByPlatform(true);
+                frame.setName("frmCor"); // NOI18N
+                frame.setSize(1041, 800);
+                frame.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    @Override
+                    public void windowOpened(java.awt.event.WindowEvent evt) {
+                        seletorCores3.colorPanel.init();
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
+                    }
+                });
+
+
+                frame.setVisible(true);
             }
         });
     }
